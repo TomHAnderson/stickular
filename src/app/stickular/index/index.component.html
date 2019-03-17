@@ -1,3 +1,97 @@
-<p>
-  index works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        We cut and ship stickers you select from our library of 
+        over 1500 time tracking designs.  Pick a color for your sticker, pick an 
+        icon, and let us know if you want the sticker to show the 
+        icon or the inverse in a triangle to fit your Tracker.
+      </div>
+    </div>
+  </div>
+  <div class="row">    
+    <div class="col-md-3">
+      <div class="form-check form-check-inline">
+        <input 
+          type="checkbox" 
+          id="regularFilter"
+          name="icon-group" 
+          class="form-check-input"
+          [(ngModel)]="regularFilter"
+          (ngModelChange)="filterChange()"
+        > 
+        <label class="form-check-label" for="regularFilter">Regular</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input 
+          type="checkbox" 
+          id="solidFilter"
+          name="icon-group" 
+          class="form-check-input"
+          [(ngModel)]="solidFilter"
+          (ngModelChange)="filterChange()"
+        > 
+        <label class="form-check-label" for="solidFilter">Solid</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input 
+          type="checkbox" 
+          id="brandFilter"
+          name="icon-group" 
+          class="form-check-input"
+          [(ngModel)]="brandFilter"
+          (ngModelChange)="filterChange()"
+        > 
+        <label class="form-check-label" for="brandFilter">Brands</label>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="input-group">
+        <input 
+          id="typeahead-basic" 
+          type="text" 
+          class="form-control" 
+          [(ngModel)]="term" 
+          [ngbTypeahead]="search"
+          placeholder="search for a name or term"  
+        >
+
+        <button 
+          (click)="filterChange()" 
+          class="form-control"
+          class="btn btn-primary"
+          style="margin-left: 10px;"
+          >Search</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="icons?.default">
+  <div class="row">
+    <ng-container *ngFor="let icon of icons.default | keyvalue">
+      <div 
+        class="col-md-2"
+        *ngIf="
+          icon.value.svg.brands?.visible || 
+          icon.value.svg.solid?.visible || 
+          icon.value.svg.regular?.visible
+        ">
+        {{ icon.key }}
+        <ng-container *ngFor="let svgGroup of icon.value.svg | keyvalue">
+          <div *ngIf="icon.value.svg[svgGroup.key].visible"
+            style="border: solid; margin: 10px; padding: 10px;"
+          >
+            <span
+              style="
+                height: 80px;
+                max-height: 50px;
+              "
+              [innerHTML]="icon.value.svg[svgGroup.key].raw | safeHtml"></span>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
