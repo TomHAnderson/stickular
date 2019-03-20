@@ -1,0 +1,2 @@
+ssh -t dev "rm -rf /var/www/stickular/*"
+scp -r dist/stickular/* dev:/var/www/stickular

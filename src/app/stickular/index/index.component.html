@@ -1,12 +1,45 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="jumbotron">
+      <p>
         We cut and ship stickers you select from our library of 
         over 1500 time tracking designs.  Pick a color for your sticker, pick an 
         icon, and let us know if you want the sticker to show the 
         icon or the inverse in a triangle to fit your Tracker.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style='min-height: 70px;'>
+      <h3>1. Start by picking a color</h3>
+      <span 
+        *ngFor="let rgb of palette"
+        class="dot" 
+        (click)="selectColor(rgb)" 
+        [ngClass]="{'selected': getColor() === rgb}"
+        [ngStyle]="{'background-color': rgb, 'fill': (getColor() === rgb) ? 'white': rgb}"
+      >
+        <div style="width: 25px; padding-left: 11px; padding-top: 6px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>
+        </div>
+      </span>
+
+      <br>
+      <br>
+
+      <div>
+        <button
+          class="btn btn-primary"
+          id="inverse"
+          (click)="inverseColors()"
+        >Inverse Colors</button>
+        Swap the foreground and background colors.
       </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+      <h3>2. Find an icon and click the icon when you're ready</h3>
     </div>
   </div>
   <div class="row">    
@@ -53,7 +86,8 @@
           class="form-control" 
           [(ngModel)]="term" 
           [ngbTypeahead]="search"
-          placeholder="search for a name or term"  
+          placeholder="search for a name or term"
+          (selectItem)="filterChange($event)"  
         >
 
         <button 
@@ -68,30 +102,26 @@
   </div>
 </div>
 
-<div class="container" *ngIf="icons?.default">
+<div class="container" *ngIf="icons?.default" style="margin-top: 30px;">
   <div class="row">
     <ng-container *ngFor="let icon of icons.default | keyvalue">
-      <div 
-        class="col-md-2"
-        *ngIf="
-          icon.value.svg.brands?.visible || 
-          icon.value.svg.solid?.visible || 
-          icon.value.svg.regular?.visible
-        ">
-        {{ icon.key }}
-        <ng-container *ngFor="let svgGroup of icon.value.svg | keyvalue">
-          <div *ngIf="icon.value.svg[svgGroup.key].visible"
-            style="border: solid; margin: 10px; padding: 10px;"
-          >
-            <span
-              style="
-                height: 80px;
-                max-height: 50px;
-              "
-              [innerHTML]="icon.value.svg[svgGroup.key].raw | safeHtml"></span>
-          </div>
-        </ng-container>
-      </div>
+      <ng-container *ngFor="let svgGroup of icon.value.svg | keyvalue">
+        <div class="col-md-2" *ngIf="icon.value.svg[svgGroup.key].visible"
+          style="margin: 10px; padding: 10px; max-width: 150px"
+          [ngStyle]="{
+            'fill': color,
+            'background-color': backgroundColor
+          }"
+        >
+          <span
+            (click)="stickerDetail(icon.key, svgGroup.key)"
+            style="max-height: 50px;"
+            [innerHTML]="icon.value.svg[svgGroup.key].raw | safeHtml">
+          </span>
+
+          {{ ucFirst(svgGroup.key) }} {{ icon.value.label }}
+        </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>

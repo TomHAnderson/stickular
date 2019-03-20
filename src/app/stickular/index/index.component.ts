@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as iconModule from '../../data/fontawesome-free-5.7.2-desktop/metadata/icons.json';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -9,14 +10,49 @@ import { debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent {
-  public icons;
+  public paletteColor = 'rgb(242, 72, 63)';
+  public palette = [
+    'rgb(242, 72, 63)',
+    'rgb(231, 40, 102)',
+    'rgb(155, 43, 174)',
+    'rgb(103, 59, 181)',
+    'rgb(63, 81, 179)',
+    'rgb(37, 149, 240)',
+    'rgb(18, 168, 241)',
+    'rgb(18, 187, 210)',
+    'rgb(12, 149, 135)',
+    'rgb(79, 174, 83)',
+    'rgb(140, 194, 80)',
+    'rgb(205, 220, 71)',
+    'rgb(255, 235, 77)',
+    'rgb(254, 194, 45)',
+    'rgb(254, 154, 40)',
+    'rgb(253, 91, 50)',
+    'rgb(121, 85, 73)',
+    'rgb(158, 158, 158)',
+    'rgb(97, 125, 138)',
+    'rgb(55, 64, 70)',
+  ];
+  public color = 'rgb(242, 72, 63)';
+  public backgroundColor = 'white';
+  public inverse = false;
+  public icons: any;
   public terms = [];
   public term: string;
   public brandFilter = false;
-  public regularFilter = false;
+  public regularFilter = true;
   public solidFilter = false;
+  public cart = [];
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
+    Object.keys(iconModule.default).forEach(key => {
+      if (key === 'font-awesome-logo-full') {
+        delete iconModule.default[key];
+      }
+    });
+
     this.icons = iconModule;
     Object.keys(this.icons.default).forEach(key => {
       this.terms = this.terms.concat(this.icons.default[key].search.terms);
@@ -27,6 +63,8 @@ export class IndexComponent {
     this.terms = this.terms.filter((value, index, self) => {
       return self.indexOf(value) === index;
     });
+
+    this.filterChange();
   }
 
   search = (text$: Observable<string>) =>
@@ -37,7 +75,35 @@ export class IndexComponent {
         : this.terms.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
-  filterChange() {
+  selectColor(color) {
+    if (! this.inverse) {
+      this.color = color;
+    } else {
+      this.backgroundColor = color;
+    }
+
+    this.paletteColor = color;
+  }
+
+  getColor() {
+    return this.paletteColor;
+  }
+
+  inverseColors() {
+    this.inverse = ! this.inverse;
+    const backgroundColor = this.backgroundColor;
+    this.backgroundColor = this.color;
+    this.color = backgroundColor;
+  }
+
+  ucFirst(value): string {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  filterChange($event?) {
+    if ($event) {
+      this.search = $event.item;
+    }
     Object.keys(this.icons.default).forEach(key => {
       if (this.icons.default[key].svg['brands']) {
         this.icons.default[key].svg.brands.visible = false;
@@ -76,8 +142,14 @@ export class IndexComponent {
         // Skip if the label matches
         if (this.term !== key) {
           // Hide all icons which do not match the term
-          console.log(this.icons.default[key].search.terms.indexOf(this.term));
-          if (this.icons.default[key].search.terms.indexOf(this.term) === -1) {
+          let found = false;
+          this.icons.default[key].search.terms.forEach(t => {
+            if (t.toLowerCase().indexOf(this.term.toLowerCase()) > -1) {
+              found = true;
+            }
+          });
+
+          if (! found) {
             if (this.icons.default[key].svg.regular) {
               this.icons.default[key].svg.regular.visible = false;
             }
@@ -91,5 +163,20 @@ export class IndexComponent {
         }
       }
     });
+  }
+
+  stickerDetail(iconName: string, iconStyle: string) {
+    this.router.navigateByUrl(
+      '/sticker-detail/'
+      + iconName
+      + '/'
+      + iconStyle
+      + '?color='
+      + this.color
+      + '&inverse='
+      + this.inverse
+      + '&backgroundColor='
+      + this.backgroundColor
+    );
   }
 }

@@ -1,0 +1,22 @@
+.dot {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.selected {
+  fill: white;
+  color: white;
+}
+
+.triangle {
+  /* the polygon() function takes a comma-separated list
+     of x y positions in relation to the origin 0 0 point
+     (the top-left) of the element, using those points
+     to form a line from one to the next (and from the last
+     to the first): */
+  /* -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%); */
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}

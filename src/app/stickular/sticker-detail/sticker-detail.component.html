@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" style="margin-bottom: 30px">
+      <h3>
+        3. Click the sticker style to add to your cart
+      </h3>
+      <strong><u>
+        NOTE:  These images are approximations.  Final product will be
+        individually proofed for positioning.
+      </u></strong>
+    </div>
+  </div>
+  <div class="row">
+
+    <!-- No Border -->
+    <div class="col-md-4">
+      <div
+        [ngStyle]="{
+          'fill': 'white',
+          'position': 'relative'
+        }"
+        style="position: relative"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.4996in" height="2.17265in" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 1.75069 1.5217"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path class="fil0" d="M0.875766 0c0,0 -0.43746,0.75737 -0.43746,0.75737 0,0 -0.438306,0.761263 -0.438306,0.761263 0,0 0.874928,0.00307179 0.874928,0.00307179 0,0 0.875766,-0.00224731 0.875766,-0.00224731 0,0 -0.437463,-0.760439 -0.437463,-0.760439 0,0 -0.437465,-0.759019 -0.437465,-0.759019zm-0.00296425 0.151987c0,0 -0.372144,0.644284 -0.372144,0.644284 0,0 -0.372861,0.647593 -0.372861,0.647593 0,0 0.744291,0.00261681 0.744291,0.00261681 0,0 0.745003,-0.00191366 0.745003,-0.00191366 0,0 -0.372147,-0.646893 -0.372147,-0.646893 0,0 -0.372142,-0.645688 -0.372142,-0.645688z"/>
+      </svg>
+
+        <div 
+          [innerHtml]="icons.default[stickerSettings.iconName].svg[stickerSettings.iconStyle].raw | safeHtml"
+          [ngStyle]="{
+            'fill': stickerSettings.color,
+            'background-color': stickerSettings.backgroundColor === 'white' ? 'none' : stickerSettings.backgroundColor,
+            'z-index': '1000',
+            'position': 'absolute',
+            'left': calculateLeftOffset(icons.default[stickerSettings.iconName]),
+            'top': calculateTopOffset(icons.default[stickerSettings.iconName]),
+            'width': calculateWidth(icons.default[stickerSettings.iconName])
+          }"
+        ></div>
+      </div>
+      <div class="position: absolute">
+        {{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} No Border
+        <br>
+        <button 
+        class="btn btn-info"
+        (click)="addToCart(stickerSettings, 'no border')">
+        Add To Cart
+      </button>
+  </div>
+    </div>
+
+    <!-- Solid Border -->
+    <div class="col-md-4">
+      <div
+        [ngStyle]="{
+          'fill': stickerSettings.color,
+          'position': 'relative'
+        }"
+        style="position: relative"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.4996in" height="2.17265in" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+        viewBox="0 0 1.75069 1.5217"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path class="fil0" d="M0.875766 0c0,0 -0.43746,0.75737 -0.43746,0.75737 0,0 -0.438306,0.761263 -0.438306,0.761263 0,0 0.874928,0.00307179 0.874928,0.00307179 0,0 0.875766,-0.00224731 0.875766,-0.00224731 0,0 -0.437463,-0.760439 -0.437463,-0.760439 0,0 -0.437465,-0.759019 -0.437465,-0.759019zm-0.00296425 0.151987c0,0 -0.372144,0.644284 -0.372144,0.644284 0,0 -0.372861,0.647593 -0.372861,0.647593 0,0 0.744291,0.00261681 0.744291,0.00261681 0,0 0.745003,-0.00191366 0.745003,-0.00191366 0,0 -0.372147,-0.646893 -0.372147,-0.646893 0,0 -0.372142,-0.645688 -0.372142,-0.645688z"/>
+        </svg>
+
+        <div 
+          [innerHtml]="icons.default[stickerSettings.iconName].svg[stickerSettings.iconStyle].raw | safeHtml"
+          [ngStyle]="{
+            'fill': stickerSettings.color,
+            'background-color': stickerSettings.backgroundColor === 'white' ? 'none' : stickerSettings.backgroundColor,
+            'z-index': '1000',
+            'position': 'absolute',
+            'left': calculateLeftOffset(icons.default[stickerSettings.iconName]),
+            'top': calculateTopOffset(icons.default[stickerSettings.iconName]),
+            'width': calculateWidth(icons.default[stickerSettings.iconName])
+          }"
+        ></div>
+        <br>
+        <div class="text-left">
+          {{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Solid Border
+          <br>
+          <button 
+            class="btn btn-info"
+            (click)="addToCart(stickerSettings, 'solid border')">
+            Add To Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inverse -->
+    <div class="col-md-4">
+      <div
+        [ngStyle]="{
+          'fill': stickerSettings.color,
+          'background-color': 'white',
+          'position': 'relative'
+        }"
+        style="position: relative"
+      >
+
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.5in" height="2.17333in" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+        viewBox="0 0 12.4779 10.8458"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+          <metadata id="CorelCorpID_0Corel-Layer"/>
+          <path class="fil0" d="M6.24196 0c0,0 -3.11796,5.3981 -3.11796,5.3981 0,0 -3.124,5.42585 -3.124,5.42585 0,0 6.23599,0.021894 6.23599,0.021894 0,0 6.24196,-0.0160176 6.24196,-0.0160176 0,0 -3.11798,-5.41998 -3.11798,-5.41998 0,0 -3.118,-5.40985 -3.118,-5.40985z"/>
+        </svg>
+
+        <div 
+          [innerHtml]="icons.default[stickerSettings.iconName].svg[stickerSettings.iconStyle].raw | safeHtml"
+          [ngStyle]="{
+            'fill': 'white',
+            'background-color': (stickerSettings.backgroundColor === 'white') ? 'none' : stickerSettings.backgroundColor,
+            'z-index': '1000',
+            'position': 'absolute',
+            'left': calculateLeftOffset(icons.default[stickerSettings.iconName]),
+            'width': calculateWidth(icons.default[stickerSettings.iconName]),
+            'top': calculateTopOffset(icons.default[stickerSettings.iconName])
+          }"
+        ></div>
+        <br>
+        <div class="text-left">
+            {{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border
+            <br>
+            <button 
+              class="btn btn-info"
+              (click)="addToCart(stickerSettings, 'filled border')">
+              Add To Cart
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="margin-top: 30px;">
+      <a class="btn btn-primary" [routerLink]="['']">Select More Stickers</a>
+      or 
+      <a class="btn btn-success" [routerLink]="['']">Checkout</a>
+    </div>
+  </div>
+</div>
+ 
