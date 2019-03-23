@@ -40,15 +40,15 @@
           }"
         ></div>
       </div>
-      <div class="position: absolute">
-        {{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} No Border
+      <div class="text-center">
+        <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} No Border</small>
         <br>
         <button 
-        class="btn btn-info"
-        (click)="addToCart(stickerSettings, 'no border')">
-        Add To Cart
-      </button>
-  </div>
+          class="btn btn-info"
+          (click)="addToCart(stickerSettings, 'no border')">
+          Add To Cart
+        </button>
+      </div>
     </div>
 
     <!-- Triangele Solid -->
@@ -231,7 +231,7 @@
 
   <div class="row text-center">
     <div class="col-md-12" style="margin: 30px;">
-      <a class="btn btn-secondary" (click)="activeModal.close()">Close</a>
+      <a class="btn btn-warning" (click)="activeModal.close()">Close</a>
     </div>
   </div>
 </div>

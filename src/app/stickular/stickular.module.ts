@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StickerDetailContent } from './sticker-detail-content/sticker-detail.content';
 import { RouterModule } from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   entryComponents: [
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     CommonModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    InfiniteScrollModule
   ]
 })
 export class StickularModule { }

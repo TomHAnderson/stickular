@@ -12,6 +12,8 @@ import { StickerDetailContent } from '../sticker-detail-content/sticker-detail.c
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent {
+  public page = 1;
+  public pageSize = 36;
   public paletteColor = 'rgb(242, 72, 63)';
   public palette = [
     'rgb(242, 72, 63)',
@@ -41,9 +43,9 @@ export class IndexComponent {
   public icons: any;
   public terms = [];
   public term: string;
-  public brandFilter = false;
+  public brandFilter = true;
   public regularFilter = true;
-  public solidFilter = false;
+  public solidFilter = true;
   public cart = [];
 
   constructor(
@@ -105,9 +107,15 @@ export class IndexComponent {
 
   filterChange($event?) {
     if ($event) {
+      this.page = 1;
       this.search = $event.item;
     }
+
+    const showIconCount = this.page * this.pageSize;
+    let iconsShowing = 0;
+
     Object.keys(this.icons.default).forEach(key => {
+
       if (this.icons.default[key].svg['brands']) {
         this.icons.default[key].svg.brands.visible = false;
       }
@@ -141,6 +149,7 @@ export class IndexComponent {
           }
         }
       }
+      // Filter Search
       if (this.term) {
         // Skip if the label matches
         if (this.term !== key) {
@@ -165,7 +174,44 @@ export class IndexComponent {
           }
         }
       }
-    });
+
+      // Pagination
+      if (iconsShowing < showIconCount) {
+        let currentlyShowing = false;
+        if (this.icons.default[key].svg.regular
+          && this.icons.default[key].svg.regular.visible) {
+          currentlyShowing = true;
+        }
+        if (this.icons.default[key].svg.solid
+          && this.icons.default[key].svg.solid.visible) {
+          currentlyShowing = true;
+        }
+        if (this.icons.default[key].svg.brands
+          && this.icons.default[key].svg.brands.visible) {
+          currentlyShowing = true;
+        }
+
+        if (currentlyShowing) {
+          iconsShowing ++;
+        }
+      } else {
+        // Hide the rest for pagination
+        if (this.icons.default[key].svg.regular) {
+          this.icons.default[key].svg.regular.visible = false;
+        }
+        if (this.icons.default[key].svg.solid) {
+          this.icons.default[key].svg.solid.visible = false;
+        }
+        if (this.icons.default[key].svg.brands) {
+          this.icons.default[key].svg.brands.visible = false;
+        }
+      }
+    }); // End key foreach
+  }
+
+  onScroll() {
+    this.page ++;
+    this.filterChange();
   }
 
   stickerDetail(iconName: string, iconStyle: string) {

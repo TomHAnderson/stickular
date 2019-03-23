@@ -102,7 +102,15 @@
   </div>
 </div>
 
-<div class="container" *ngIf="icons?.default" style="margin-top: 30px;">
+<div 
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  class="container" 
+  *ngIf="icons?.default" 
+  style="margin-top: 30px;"
+>
   <div class="row">
     <ng-container *ngFor="let icon of icons.default | keyvalue">
       <ng-container *ngFor="let svgGroup of icon.value.svg | keyvalue">
