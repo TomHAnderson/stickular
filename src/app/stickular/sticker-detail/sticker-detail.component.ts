@@ -44,11 +44,11 @@ export class StickerDetailComponent implements OnInit {
     const height = icon.svg[this.stickerSettings.iconStyle].height;
 
     if (height < width) {
-      const delta = ((((width / height) * 100) - 100)) * 2;
-      return (88 + delta) + 'px';
+      const delta = ((((width / height) * 100) - 100)) / 2;
+      return (80 + delta) + 'px';
     }
 
-    return '88px';
+    return '80px';
   }
 
   calculateLeftOffset(icon) {
@@ -56,16 +56,16 @@ export class StickerDetailComponent implements OnInit {
     const height = icon.svg[this.stickerSettings.iconStyle].height;
 
     if (height > width) {
-      const delta = ((((height / width) * 70) - 70) / 2);
+      const delta = ((((height / width) * 64) - 64) / 2);
 
-      return (70 + delta) + 'px';
+      return (64 + delta) + 'px';
     } else if (width > height) {
-      const delta = ((((width / height) * 70) - 70) / 2);
+      const delta = ((((width / height) * 64) - 64) / 2);
 
-      return (70 + delta) + 'px';
+      return (64 + delta) + 'px';
     }
 
-    return '75px';
+    return '65px';
   }
 
   calculateWidth(icon) {
