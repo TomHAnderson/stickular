@@ -1,42 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as iconModule from '../../data/fontawesome-free-5.7.2-desktop/metadata/icons.json';
-import { AppComponent } from 'src/app/app.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-sticker-detail',
-  templateUrl: './sticker-detail.component.html',
-  styleUrls: ['./sticker-detail.component.css']
+  selector: 'app-sticker-detail-content',
+  templateUrl: './sticker-detail.content.html',
+  styleUrls: ['./sticker-detail.content.css']
 })
-export class StickerDetailComponent implements OnInit {
+// tslint:disable-next-line:component-class-suffix
+export class StickerDetailContent {
+  @Input() name;
   public stickerSettings: any;
   public icons = iconModule;
 
-
   constructor(
-    private route: ActivatedRoute,
-    private appComponent: AppComponent
+    public activeModal: NgbActiveModal
   ) {
-    this.route.queryParams.subscribe(query => {
-      this.route.params.subscribe(params => {
-
-        this.stickerSettings = {
-          iconName: params['iconName'],
-          iconStyle: params['iconStyle'],
-          color: query['color'],
-          backgroundColor: query['backgroundColor'],
-          inverse: (query['invers'] === 'true') ? true : false
-        };
-      });
-    });
   }
 
   addToCart(icon, border) {
 
-  }
-
-
-  ngOnInit() {
   }
 
   calculateTopOffset(icon) {
@@ -65,7 +49,7 @@ export class StickerDetailComponent implements OnInit {
       return (64 + delta) + 'px';
     }
 
-    return '65px';
+    return '68px';
   }
 
   calculateWidth(icon) {
@@ -77,12 +61,14 @@ export class StickerDetailComponent implements OnInit {
       if (delta > 100) {
         delta = 90;
       }
+
       return delta + 'px';
     } else if (width > height) {
       let delta = (height / width * 100);
       if (delta > 100) {
         delta = 90;
       }
+
       return delta + 'px';
     }
 

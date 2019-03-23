@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12" style="margin-bottom: 30px">
       <h3>
-        3. Click the sticker style to add to your cart
+        3. Select your sticker style then add to your cart
       </h3>
       <strong><u>
         NOTE:  These images are approximations.  Final product will be
@@ -80,7 +80,7 @@
           }"
         ></div>
         <br>
-        <div class="text-left">
+        <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Solid Border</small>
           <br>
           <button 
@@ -122,7 +122,7 @@
           }"
         ></div>
         <br>
-        <div class="text-left">
+        <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border</small>
           <br>
           <button 
@@ -166,7 +166,7 @@
           }"
         ></div>
         <br>
-        <div class="text-left">
+        <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Solid Border With Battery Notch</small>
           <br>
           <button 
@@ -210,7 +210,7 @@
           }"
         ></div>
         <br>
-        <div class="text-left">
+        <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border With Battery Notch</small>
           <br>
           <button 
@@ -224,11 +224,14 @@
     <!-- End filled border w/ battery -->
   </div>
 
-  <div class="row">
-    <div class="col-md-12" style="margin-top: 30px;">
-      <a class="btn btn-primary" [routerLink]="['']">Select More Stickers</a>
-      or 
-      <a class="btn btn-success" [routerLink]="['']">Checkout</a>
+  <strong><u>
+    NOTE:  These images are approximations.  Final product will be
+    individually proofed for positioning.
+  </u></strong>
+
+  <div class="row text-center">
+    <div class="col-md-12" style="margin: 30px;">
+      <a class="btn btn-secondary" (click)="activeModal.close()">Close</a>
     </div>
   </div>
 </div>

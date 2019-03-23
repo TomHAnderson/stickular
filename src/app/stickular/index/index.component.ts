@@ -3,6 +3,8 @@ import * as iconModule from '../../data/fontawesome-free-5.7.2-desktop/metadata/
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StickerDetailContent } from '../sticker-detail-content/sticker-detail.content';
 
 @Component({
   selector: 'app-index',
@@ -45,7 +47,8 @@ export class IndexComponent {
   public cart = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {
     Object.keys(iconModule.default).forEach(key => {
       if (key === 'font-awesome-logo-full') {
@@ -166,17 +169,15 @@ export class IndexComponent {
   }
 
   stickerDetail(iconName: string, iconStyle: string) {
-    this.router.navigateByUrl(
-      '/sticker-detail/'
-      + iconName
-      + '/'
-      + iconStyle
-      + '?color='
-      + this.color
-      + '&inverse='
-      + this.inverse
-      + '&backgroundColor='
-      + this.backgroundColor
-    );
+    const modalRef = this.modalService.open(StickerDetailContent, { size: 'lg' });
+    modalRef.componentInstance.name = 'StickerDetail';
+
+    modalRef.componentInstance.stickerSettings = {
+      iconName: iconName,
+      iconStyle: iconStyle,
+      color: (this.inverse) ? this.backgroundColor : this.color,
+      backgroundColor: (this.inverse) ? this.color : this.backgroundColor,
+      inverse: false
+    };
   }
 }

@@ -16,6 +16,6 @@ import { AppComponent } from './app.component';
     DataModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

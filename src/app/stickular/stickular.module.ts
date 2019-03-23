@@ -5,15 +5,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StickerDetailComponent } from './sticker-detail/sticker-detail.component';
+import { StickerDetailContent } from './sticker-detail-content/sticker-detail.content';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
+  entryComponents: [
+    StickerDetailContent,
+  ],
   declarations: [
+    StickerDetailContent,
     IndexComponent,
     PageNotFoundComponent,
-    SafeHtmlPipe,
-    StickerDetailComponent
+    SafeHtmlPipe
   ],
   imports: [
     RouterModule,
