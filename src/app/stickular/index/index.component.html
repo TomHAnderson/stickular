@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <p>
+      <p style="padding: 15px; margin: 5px; background-color: lightgray">
         We cut and ship stickers you select from our library of 
-        over 1500 time tracking designs.  Pick a color for your sticker, pick an 
-        icon, and let us know if you want the sticker to show the 
-        icon or the inverse in a triangle to fit your Tracker.
+        over <strong>5000 time tracking designs</strong>.  Pick a color for your sticker, pick an 
+        icon, then pick a style and we'll create custom colored stickers for 
+        your Tracker.
       </p>
     </div>
   </div>
@@ -43,7 +43,18 @@
     </div>
   </div>
   <div class="row">    
-    <div class="col-md-3">
+    <div class="col-md-4">
+      <div class="form-check form-check-inline">
+        <input 
+          type="checkbox" 
+          id="solidFilter"
+          name="icon-group" 
+          class="form-check-input"
+          [(ngModel)]="solidFilter"
+          (ngModelChange)="filterChange()"
+        > 
+        <label class="form-check-label" for="solidFilter">Solid</label>
+      </div>
       <div class="form-check form-check-inline">
         <input 
           type="checkbox" 
@@ -58,13 +69,13 @@
       <div class="form-check form-check-inline">
         <input 
           type="checkbox" 
-          id="solidFilter"
+          id="lightFilter"
           name="icon-group" 
           class="form-check-input"
-          [(ngModel)]="solidFilter"
+          [(ngModel)]="lightFilter"
           (ngModelChange)="filterChange()"
         > 
-        <label class="form-check-label" for="solidFilter">Solid</label>
+        <label class="form-check-label" for="lightFilter">Light</label>
       </div>
       <div class="form-check form-check-inline">
         <input 

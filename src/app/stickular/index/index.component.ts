@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as iconModule from '../../data/fontawesome-free-5.7.2-desktop/metadata/icons.json';
+import * as iconModule from '../../data/fontawesome-pro-5.8.1-desktop/metadata/icons.json';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -16,36 +16,37 @@ export class IndexComponent {
   public pageSize = 36;
   public paletteColor = 'rgb(242, 72, 63)';
   public palette = [
-    'rgb(242, 72, 63)',
-    'rgb(231, 40, 102)',
-    'rgb(155, 43, 174)',
-    'rgb(103, 59, 181)',
-    'rgb(63, 81, 179)',
-    'rgb(37, 149, 240)',
-    'rgb(18, 168, 241)',
-    'rgb(18, 187, 210)',
-    'rgb(12, 149, 135)',
-    'rgb(79, 174, 83)',
-    'rgb(140, 194, 80)',
-    'rgb(205, 220, 71)',
-    'rgb(255, 235, 77)',
-    'rgb(254, 194, 45)',
-    'rgb(254, 154, 40)',
-    'rgb(253, 91, 50)',
-    'rgb(121, 85, 73)',
-    'rgb(158, 158, 158)',
-    'rgb(97, 125, 138)',
-    'rgb(55, 64, 70)',
+    'rgb(242, 72, 63)', // Red
+    'rgb(231, 40, 102)', // Hot Pink
+    'rgb(155, 43, 174)', // Light Purple
+    'rgb(103, 59, 181)', // Purple
+    'rgb(63, 81, 179)', // Dark Purple
+    'rgb(37, 149, 240)', // Dark Blue
+    'rgb(18, 168, 241)', // Blue
+    'rgb(18, 187, 210)', // Light Blue
+    'rgb(12, 149, 135)', // Blue-Green
+    'rgb(79, 174, 83)', // Dark Green
+    'rgb(140, 194, 80)', // Green
+    'rgb(205, 220, 71)', // Light Green
+    'rgb(255, 235, 77)', // Yellow
+    'rgb(254, 194, 45)', // Light Orange
+    'rgb(254, 154, 40)', // Orange
+    'rgb(253, 91, 50)', // Dark Orange
+    'rgb(121, 85, 73)', // Brown
+    'rgb(158, 158, 158)', // Light Gray
+    'rgb(97, 125, 138)', // Gray
+    'rgb(55, 64, 70)', // Dark Gray
   ];
-  public color = 'rgb(242, 72, 63)';
+  public color = 'rgb(242, 72, 63)'; // red
   public backgroundColor = 'white';
   public inverse = false;
   public icons: any;
   public terms = [];
   public term: string;
-  public brandFilter = true;
-  public regularFilter = true;
   public solidFilter = true;
+  public regularFilter = true;
+  public lightFilter = true;
+  public brandFilter = true;
   public cart = [];
 
   constructor(
@@ -116,10 +117,6 @@ export class IndexComponent {
 
     Object.keys(this.icons.default).forEach(key => {
 
-      if (this.icons.default[key].svg['brands']) {
-        this.icons.default[key].svg.brands.visible = false;
-      }
-
       if (this.icons.default[key].svg['solid']) {
         this.icons.default[key].svg.solid.visible = false;
       }
@@ -128,13 +125,14 @@ export class IndexComponent {
         this.icons.default[key].svg.regular.visible = false;
       }
 
-      if (this.brandFilter) {
-        if (this.icons.default[key].styles.indexOf('brands') > -1) {
-          if (this.icons.default[key].svg['brands']) {
-            this.icons.default[key].svg.brands.visible = true;
-          }
-        }
+      if (this.icons.default[key].svg['light']) {
+        this.icons.default[key].svg.regular.visible = false;
       }
+
+      if (this.icons.default[key].svg['brands']) {
+        this.icons.default[key].svg.brands.visible = false;
+      }
+
       if (this.solidFilter) {
         if (this.icons.default[key].styles.indexOf('solid') > -1) {
           if (this.icons.default[key].svg['solid']) {
@@ -146,6 +144,20 @@ export class IndexComponent {
         if (this.icons.default[key].styles.indexOf('regular') > -1) {
           if (this.icons.default[key].svg['regular']) {
             this.icons.default[key].svg.regular.visible = true;
+          }
+        }
+      }
+      if (this.lightFilter) {
+        if (this.icons.default[key].styles.indexOf('light') > -1) {
+          if (this.icons.default[key].svg['light']) {
+            this.icons.default[key].svg.light.visible = true;
+          }
+        }
+      }
+      if (this.brandFilter) {
+        if (this.icons.default[key].styles.indexOf('brands') > -1) {
+          if (this.icons.default[key].svg['brands']) {
+            this.icons.default[key].svg.brands.visible = true;
           }
         }
       }
@@ -162,11 +174,14 @@ export class IndexComponent {
           });
 
           if (! found) {
+            if (this.icons.default[key].svg.solid) {
+              this.icons.default[key].svg.solid.visible = false;
+            }
             if (this.icons.default[key].svg.regular) {
               this.icons.default[key].svg.regular.visible = false;
             }
-            if (this.icons.default[key].svg.solid) {
-              this.icons.default[key].svg.solid.visible = false;
+            if (this.icons.default[key].svg.light) {
+              this.icons.default[key].svg.light.visible = false;
             }
             if (this.icons.default[key].svg.brands) {
               this.icons.default[key].svg.brands.visible = false;
@@ -178,12 +193,16 @@ export class IndexComponent {
       // Pagination
       if (iconsShowing < showIconCount) {
         let currentlyShowing = false;
+        if (this.icons.default[key].svg.solid
+          && this.icons.default[key].svg.solid.visible) {
+          currentlyShowing = true;
+        }
         if (this.icons.default[key].svg.regular
           && this.icons.default[key].svg.regular.visible) {
           currentlyShowing = true;
         }
-        if (this.icons.default[key].svg.solid
-          && this.icons.default[key].svg.solid.visible) {
+        if (this.icons.default[key].svg.light
+          && this.icons.default[key].svg.light.visible) {
           currentlyShowing = true;
         }
         if (this.icons.default[key].svg.brands
@@ -196,11 +215,14 @@ export class IndexComponent {
         }
       } else {
         // Hide the rest for pagination
+        if (this.icons.default[key].svg.solid) {
+          this.icons.default[key].svg.solid.visible = false;
+        }
         if (this.icons.default[key].svg.regular) {
           this.icons.default[key].svg.regular.visible = false;
         }
-        if (this.icons.default[key].svg.solid) {
-          this.icons.default[key].svg.solid.visible = false;
+        if (this.icons.default[key].svg.light) {
+          this.icons.default[key].svg.light.visible = false;
         }
         if (this.icons.default[key].svg.brands) {
           this.icons.default[key].svg.brands.visible = false;

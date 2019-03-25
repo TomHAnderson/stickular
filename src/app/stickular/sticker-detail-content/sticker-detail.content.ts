@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import * as iconModule from '../../data/fontawesome-free-5.7.2-desktop/metadata/icons.json';
+import * as iconModule from '../../data/fontawesome-pro-5.8.1-desktop/metadata/icons.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -23,36 +22,57 @@ export class StickerDetailContent {
 
   }
 
-  calculateTopOffset(icon) {
+  calculateTopOffset(icon: any, withLabel?: boolean) {
     const width = icon.svg[this.stickerSettings.iconStyle].width;
     const height = icon.svg[this.stickerSettings.iconStyle].height;
 
     if (height < width) {
-      const delta = ((((width / height) * 100) - 100)) / 2;
+      let delta = ((((width / height) * 100) - 100)) / 2;
+
+      if (withLabel) {
+        delta -= 20;
+      }
+
       return (80 + delta) + 'px';
+    }
+
+    if (withLabel) {
+      return '60px';
     }
 
     return '80px';
   }
 
-  calculateLeftOffset(icon) {
+  calculateLeftOffset(icon: any, withLabel?: boolean) {
     const width = icon.svg[this.stickerSettings.iconStyle].width;
     const height = icon.svg[this.stickerSettings.iconStyle].height;
 
     if (height > width) {
-      const delta = ((((height / width) * 64) - 64) / 2);
+      let delta = ((((height / width) * 64) - 64) / 2);
+
+      if (withLabel) {
+        delta += 10;
+      }
 
       return (64 + delta) + 'px';
     } else if (width > height) {
-      const delta = ((((width / height) * 64) - 64) / 2);
+      let delta = ((((width / height) * 64) - 64) / 2);
+
+      if (withLabel) {
+        delta += 10;
+      }
 
       return (64 + delta) + 'px';
+    }
+
+    if (withLabel) {
+      return '78px';
     }
 
     return '68px';
   }
 
-  calculateWidth(icon) {
+  calculateWidth(icon: any, withLabel?: boolean) {
     const width = icon.svg[this.stickerSettings.iconStyle].width;
     const height = icon.svg[this.stickerSettings.iconStyle].height;
 
@@ -62,6 +82,10 @@ export class StickerDetailContent {
         delta = 90;
       }
 
+      if (withLabel) {
+        delta -= 20;
+      }
+
       return delta + 'px';
     } else if (width > height) {
       let delta = (height / width * 100);
@@ -69,7 +93,15 @@ export class StickerDetailContent {
         delta = 90;
       }
 
-      return delta + 'px';
+      if (withLabel) {
+        delta -= 20;
+      }
+
+      return (delta) + 'px';
+    }
+
+    if (withLabel) {
+      return '70px';
     }
 
     return '90px';
