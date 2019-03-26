@@ -5,6 +5,7 @@ import { DataModule } from './data/data.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ShoppingCartModule } from 'ng-shopping-cart';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     StickularModule,
     DataModule,
     InfiniteScrollModule,
+    ShoppingCartModule.forRoot({
+      serviceType: 'localStorage',
+      serviceOptions: {
+        storageKey: 'stickular',
+        clearOnError: true
+      }
+    })
   ],
   exports: [
     InfiniteScrollModule,

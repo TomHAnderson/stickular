@@ -13,7 +13,7 @@
     <div class="col-md-12" style='min-height: 70px;'>
       <h3>1. Start by picking a color</h3>
       <span 
-        *ngFor="let rgb of palette"
+        *ngFor="let rgb of colors()"
         class="dot" 
         (click)="selectColor(rgb)" 
         [ngClass]="{'selected': getColor() === rgb}"

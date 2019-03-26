@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StickerDetailContent } from './sticker-detail-content/sticker-detail.content';
 import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ShoppingCartModule } from 'ng-shopping-cart';
 
 @NgModule({
   entryComponents: [
@@ -24,7 +25,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CommonModule,
     FormsModule,
     NgbModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ShoppingCartModule
   ]
 })
 export class StickularModule { }

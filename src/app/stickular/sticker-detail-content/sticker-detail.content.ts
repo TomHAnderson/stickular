@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import * as iconModule from '../../data/fontawesome-pro-5.8.1-desktop/metadata/icons.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { BaseCartItem } from 'ng-shopping-cart';
+import { Palette } from '../../data/palette';
 
 @Component({
   selector: 'app-sticker-detail-content',
@@ -14,13 +16,20 @@ export class StickerDetailContent {
   public icons = iconModule;
 
   constructor(
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    public palette: Palette,
   ) {
   }
 
-  addToCart(icon, border) {
-
+  getItem(style) {
+    const item = new BaseCartItem();
+    item.id = style
+      + '-'
+      + this.palette.getColorName(this.stickerSettings.color)
+      ;
   }
+
+  addToCart(one?, two?) {}
 
   calculateTopOffset(icon: any, withLabel?: boolean) {
     const width = icon.svg[this.stickerSettings.iconStyle].width;
