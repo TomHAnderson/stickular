@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ShoppingCartModule } from 'ng-shopping-cart';
+import { GoTopButtonModule } from 'ng2-go-top-button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ShoppingCartModule } from 'ng-shopping-cart';
     StickularModule,
     DataModule,
     InfiniteScrollModule,
+    GoTopButtonModule,
+    BrowserAnimationsModule,
     ShoppingCartModule.forRoot({
       serviceType: 'sessionStorage',
       serviceOptions: {
@@ -27,6 +31,7 @@ import { ShoppingCartModule } from 'ng-shopping-cart';
   ],
   exports: [
     InfiniteScrollModule,
+    GoTopButtonModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

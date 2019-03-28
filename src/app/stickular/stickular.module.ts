@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ShoppingCartModule } from 'ng-shopping-cart';
 import { CartContent } from './cart-content/cart.content';
+import { GoTopButtonModule } from 'ng2-go-top-button';
 
 @NgModule({
   entryComponents: [
@@ -29,7 +30,8 @@ import { CartContent } from './cart-content/cart.content';
     FormsModule,
     NgbModule,
     InfiniteScrollModule,
-    ShoppingCartModule
+    ShoppingCartModule,
+    GoTopButtonModule
   ]
 })
 export class StickularModule { }
