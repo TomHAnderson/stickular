@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import * as iconModule from '../../data/fontawesome-pro-5.8.1-desktop/metadata/icons.json';
+import * as iconModule from '../../data/icons.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BaseCartItem } from 'ng-shopping-cart';
 import { Palette } from '../../data/palette';

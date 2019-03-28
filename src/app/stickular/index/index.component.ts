@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import * as iconModule from '../../data/fontawesome-pro-5.8.1-desktop/metadata/icons.json';
+import * as iconModule from '../../data/icons.json';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StickerDetailContent } from '../sticker-detail-content/sticker-detail.content';
 import { Palette } from '../../data/palette';
@@ -29,25 +28,32 @@ export class IndexComponent {
   public cart = [];
 
   constructor(
-    private router: Router,
     private modalService: NgbModal,
     public palette: Palette
   ) {
     this.color = this.palette.color.red;
     this.paletteColor = this.palette.color.red;
 
+    // Take this out; it doesn't fit on a triangle!
     Object.keys(iconModule.default).forEach(key => {
       if (key === 'font-awesome-logo-full') {
         delete iconModule.default[key];
       }
     });
 
+    // Add all icon search terms to terms
     this.icons = iconModule;
     Object.keys(this.icons.default).forEach(key => {
       this.terms = this.terms.concat(this.icons.default[key].search.terms);
       this.terms.push(key);
     });
 
+    // Lowercase all terms
+    Object.keys(this.terms).forEach(index => {
+      this.terms[index] = this.terms[index].toLowerCase();
+    });
+
+    // Get unique list of terms
     this.terms.sort();
     this.terms = this.terms.filter((value, index, self) => {
       return self.indexOf(value) === index;
@@ -152,6 +158,10 @@ export class IndexComponent {
         }
       }
       // Filter Search
+      if ($event) {
+        this.term = $event.item;
+      }
+      
       if (this.term) {
         // Skip if the label matches
         if (this.term !== key) {
@@ -162,6 +172,10 @@ export class IndexComponent {
               found = true;
             }
           });
+
+          if (key.toLowerCase().indexOf(this.term.toLowerCase()) > -1) {
+            found = true;
+          }
 
           if (! found) {
             if (this.icons.default[key].svg.solid) {

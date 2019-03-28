@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <p style="padding: 15px; margin: 5px; background-color: lightgray">
+      <p style="padding: 15px; margin: 5px; background-color: lightgray; border-radius: 5px;">
         We cut and ship stickers you select from our library of 
         over <strong>5000 time tracking designs</strong>.  Pick a color for your sticker, pick an 
         icon, then pick a style and we'll create custom colored stickers for 
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12" style='min-height: 70px;'>
+    <div class="col-md-12" style='min-height: 70px; margin-top: 20px;'>
       <h3>1. Start by picking a color</h3>
       <span 
         *ngFor="let rgb of colors()"
@@ -99,6 +99,7 @@
           [ngbTypeahead]="search"
           placeholder="search for a name or term"
           (selectItem)="filterChange($event)"  
+          (ngModelChanged)="filterChange()"
         >
 
         <button 
