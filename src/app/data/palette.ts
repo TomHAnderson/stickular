@@ -28,13 +28,14 @@ export class Palette {
   };
 
   public getColorName(rgbColor: string): string {
+    let colorName = '';
     Object.keys(this.color).forEach(key => {
       if (this.color[key] === rgbColor) {
-        return key;
+        colorName = key;
       }
     });
 
-    return '';
+    return colorName;
   }
 
 }

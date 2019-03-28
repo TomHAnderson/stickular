@@ -47,7 +47,7 @@
           <br>
           <button 
             class="btn btn-info"
-            (click)="addToCart(stickerSettings, 'solid border')">
+            (click)="addToCart(getItem('solid', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Solid Border'))">
             Add To Cart
           </button>
         </div>
@@ -89,7 +89,7 @@
           <br>
           <button 
             class="btn btn-info"
-            (click)="addToCart(stickerSettings, 'filled border')">
+            (click)="addToCart(getItem('filled', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border'))">
             Add To Cart
           </button>
         </div>
@@ -131,7 +131,7 @@
           <br>
           <button 
             class="btn btn-info"
-            (click)="addToCart(stickerSettings, 'filled border')">
+            (click)="addToCart(getItem('filled-label', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Label'))">
             Add To Cart
           </button>
         </div>
@@ -176,7 +176,7 @@
           <br>
           <button 
             class="btn btn-info"
-            (click)="addToCart(stickerSettings, 'filled border')">
+            (click)="addToCart(getItem('solid-battery-notch', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Solid Border With Battery Notch'))">
             Add To Cart
           </button>
         </div>
@@ -220,7 +220,7 @@
           <br>
           <button 
             class="btn btn-info"
-            (click)="addToCart(stickerSettings, 'filled border')">
+            (click)="addToCart(getItem('filled-battery-notch', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Battery Notch'))">
             Add To Cart
           </button>
         </div>
@@ -263,7 +263,7 @@
           <br>
           <button 
             class="btn btn-info"
-            (click)="addToCart(stickerSettings, 'filled border')">
+            (click)="addToCart(getItem('filled-battery-notch-label', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Label And Battery Notch'))">
             Add To Cart
           </button>
         </div>
@@ -305,11 +305,10 @@
       <br>
       <button 
         class="btn btn-info"
-        (click)="addToCart(stickerSettings, 'no border')">
+        (click)="addToCart(getItem('none', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' No Border'))"
+      >
         Add To Cart
       </button>
-      <!-- add-to-cart [item]="getItem('no-border')"></add-to-cart -->
-
     </div>
   </div>
   

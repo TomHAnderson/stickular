@@ -9,7 +9,7 @@ import { ShoppingCartModule } from 'ng-shopping-cart';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,7 +18,7 @@ import { ShoppingCartModule } from 'ng-shopping-cart';
     DataModule,
     InfiniteScrollModule,
     ShoppingCartModule.forRoot({
-      serviceType: 'localStorage',
+      serviceType: 'sessionStorage',
       serviceOptions: {
         storageKey: 'stickular',
         clearOnError: true

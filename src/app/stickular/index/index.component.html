@@ -1,5 +1,27 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-2">
+      <img src="/assets/logo.png" class="img-fluid" style="max-height: 150px;">
+    </div>
+    <div class="col-md-7">
+      <h1>Welcome to Stickular</h1>
+      <h2>Colorful stickers to personalize your <a href="https://timeular.com">Timeular Tracker!</a></h2>
+    </div>
+    <div class="col-md-3">
+      <div style="fill: rgb(140, 194, 80);">
+        <cart-summary icon="/assets/shopping-cart.svg"></cart-summary>
+      </div>
+      <div class="100%">
+        <cart-checkout [custom]="true">
+          <button type="button" (click)="cartDetail()" class="btn btn-success">View Cart</button>
+        </cart-checkout>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
     <div class="col-md-12">
       <p style="padding: 15px; margin: 5px; background-color: lightgray; border-radius: 5px;">
         We cut and ship stickers you select from our library of 

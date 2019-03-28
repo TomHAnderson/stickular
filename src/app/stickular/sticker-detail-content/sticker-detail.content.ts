@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import * as iconModule from '../../data/icons.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { BaseCartItem } from 'ng-shopping-cart';
+import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import { Palette } from '../../data/palette';
 
 @Component({
@@ -12,24 +12,45 @@ import { Palette } from '../../data/palette';
 // tslint:disable-next-line:component-class-suffix
 export class StickerDetailContent {
   @Input() name;
-  public stickerSettings: any;
+  public stickerSettings: {
+    iconName: string;
+    iconStyle: string;
+    color: string;
+    backgroundColor: string;
+    inverse: boolean;
+  };
   public icons = iconModule;
 
   constructor(
     public activeModal: NgbActiveModal,
     public palette: Palette,
+    private cartService: CartService<BaseCartItem>
   ) {
   }
 
-  getItem(style) {
-    const item = new BaseCartItem();
-    item.id = style
-      + '-'
-      + this.palette.getColorName(this.stickerSettings.color)
-      ;
+  getItem(shape, name) {
+    return new BaseCartItem({
+      id: this.palette.getColorName(this.stickerSettings.color)
+        + ':'
+        + this.stickerSettings.iconStyle
+        + ':'
+        + this.stickerSettings.iconName
+        + ':'
+        + shape,
+      name: name + ' (' + this.palette.getColorName(this.stickerSettings.color) + ')',
+      price: 5.00,
+      quantity: 1,
+
+      // Cannot set a background image to an svg
+      //      image: '/assets/svgs/' + this.stickerSettings.iconStyle + '/' + this.stickerSettings.iconName + '.svg'
+    });
   }
 
-  addToCart(one?, two?) {}
+  addToCart(item) {
+    this.cartService.addItem(item);
+    this.activeModal.close();
+    alert(item.getName() + ' added to cart');
+  }
 
   calculateTopOffset(icon: any, withLabel?: boolean) {
     const width = icon.svg[this.stickerSettings.iconStyle].width;

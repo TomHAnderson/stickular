@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StickerDetailContent } from '../sticker-detail-content/sticker-detail.content';
+import { CartContent } from '../cart-content/cart.content';
 import { Palette } from '../../data/palette';
 
 @Component({
@@ -25,7 +26,6 @@ export class IndexComponent {
   public regularFilter = true;
   public lightFilter = true;
   public brandFilter = true;
-  public cart = [];
 
   constructor(
     private modalService: NgbModal,
@@ -61,6 +61,13 @@ export class IndexComponent {
 
     this.filterChange();
   }
+
+
+  cartDetail() {
+    const modalRef = this.modalService.open(CartContent, { size: 'lg' });
+    modalRef.componentInstance.name = 'CartDetail';
+  }
+
 
   colors() {
     const colors = [];
@@ -161,7 +168,7 @@ export class IndexComponent {
       if ($event) {
         this.term = $event.item;
       }
-      
+
       if (this.term) {
         // Skip if the label matches
         if (this.term !== key) {
