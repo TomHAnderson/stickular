@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CartService, BaseCartItem } from 'ng-shopping-cart';
+import { CartService, BaseCartItem, CheckoutPaypalSettings, CartItem } from 'ng-shopping-cart';
 
 @Component({
   selector: 'app-cart',
@@ -9,18 +9,22 @@ import { CartService, BaseCartItem } from 'ng-shopping-cart';
 })
 // tslint:disable-next-line:component-class-suffix
 export class CartContent {
-  public settings = {
-    business: 'contact@apiskeletons.com',
-    itemName: 'Stickular Order',
-    itemNumber: 'stickular-order',
-    serviceName: 'Stickular',
-    country: 'US'
-  };
+  public items: Array<CartItem>;
+  public item: CartItem;
 
   constructor(
     public activeModal: NgbActiveModal,
-    private cartService: CartService<BaseCartItem>
+    public cartService: CartService<BaseCartItem>
   ) {
+    this.items = this.cartService.getItems();
+
+//    this.cartService.onItemsChanged.subscribe( cart => {
+//      this.items = cart.getItems();
+//    });
+  }
+
+  parseInt(value: string) {
+    return parseInt(value, 10);
   }
 
 
