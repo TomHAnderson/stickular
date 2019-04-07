@@ -46,9 +46,13 @@
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Solid Border</small>
           <br>
           <button 
-            class="btn btn-info"
-            (click)="addToCart(getItem('solid', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Solid Border'))">
-            Add To Cart
+            (click)="activeModal.close()"
+            class="snipcart-add-item btn btn-success"
+            [attr.data-item-id]="getItemId('solid')"
+            [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Solid Border')"
+            [attr.data-item-price]="5.00"
+            [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('solid')"
+          >Add To Cart
           </button>
         </div>
       </div>
@@ -87,10 +91,15 @@
         <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border</small>
           <br>
+
           <button 
-            class="btn btn-info"
-            (click)="addToCart(getItem('filled', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border'))">
-            Add To Cart
+            (click)="activeModal.close()"
+            class="snipcart-add-item btn btn-success"
+            [attr.data-item-id]="getItemId('filled')"
+            [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border')"
+            [attr.data-item-price]="5.00"
+            [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('filled')"
+          >Add To Cart          
           </button>
         </div>
       </div>
@@ -129,10 +138,15 @@
         <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border With Label</small>
           <br>
+
           <button 
-            class="btn btn-info"
-            (click)="addToCart(getItem('filled-label', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Label'))">
-            Add To Cart
+            (click)="activeModal.close()"
+            class="snipcart-add-item btn btn-success"
+            [attr.data-item-id]="getItemId('filled-label')"
+            [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border with Label')"
+            [attr.data-item-price]="5.00"
+            [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('filled-label')"
+          >Add To Cart          
           </button>
         </div>
       </div>
@@ -174,11 +188,17 @@
         <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Solid Border With Battery Notch</small>
           <br>
+
           <button 
-            class="btn btn-info"
-            (click)="addToCart(getItem('solid-battery-notch', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Solid Border With Battery Notch'))">
-            Add To Cart
+            (click)="activeModal.close()"
+            class="snipcart-add-item btn btn-success"
+            [attr.data-item-id]="getItemId('solid-battery-notch')"
+            [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Solid Border With Battery Notch')"
+            [attr.data-item-price]="5.00"
+            [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('solid-battery-notch')"
+          >Add To Cart          
           </button>
+
         </div>
       </div>
     </div>
@@ -218,11 +238,17 @@
         <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border With Battery Notch</small>
           <br>
+
           <button 
-            class="btn btn-info"
-            (click)="addToCart(getItem('filled-battery-notch', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Battery Notch'))">
-            Add To Cart
+            (click)="activeModal.close()"
+            class="snipcart-add-item btn btn-success"
+            [attr.data-item-id]="getItemId('filled-battery-notch')"
+            [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Battery Notch')"
+            [attr.data-item-price]="5.00"
+            [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('filled-battery-notch')"
+          >Add To Cart          
           </button>
+
         </div>
       </div>
     </div>
@@ -261,11 +287,17 @@
         <div class="text-center">
           <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} Filled Border With Label And Battery Notch</small>
           <br>
+
           <button 
-            class="btn btn-info"
-            (click)="addToCart(getItem('filled-battery-notch-label', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Label And Battery Notch'))">
-            Add To Cart
+            (click)="activeModal.close()"
+            class="snipcart-add-item btn btn-success"
+            [attr.data-item-id]="getItemId('filled-battery-notch-label')"
+            [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' Filled Border With Label And Battery Notch')"
+            [attr.data-item-price]="5.00"
+            [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('filled-battery-notch-label')"
+          >Add To Cart          
           </button>
+
         </div>
       </div>
     </div>  
@@ -303,12 +335,17 @@
     <div class="text-center">
       <small>{{ ucFirst(stickerSettings.iconStyle) }} {{ icons.default[stickerSettings.iconName].label }} No Border</small>
       <br>
+
       <button 
-        class="btn btn-info"
-        (click)="addToCart(getItem('none', ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' No Border'))"
-      >
-        Add To Cart
-      </button>
+      (click)="activeModal.close()"
+      class="snipcart-add-item btn btn-success"
+      [attr.data-item-id]="getItemId('none')"
+      [attr.data-item-name]="getItemName(ucFirst(stickerSettings.iconStyle) + ' ' + icons.default[stickerSettings.iconName].label + ' No Border')"
+      [attr.data-item-price]="5.00"
+      [attr.data-item-url]="'https://stickular.com/assets/inventory/' + getItemId('none')"
+    >Add To Cart          
+    </button>
+
     </div>
   </div>
   

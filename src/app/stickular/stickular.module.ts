@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StickerDetailContent } from './sticker-detail-content/sticker-detail.content';
 import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ShoppingCartModule } from 'ng-shopping-cart';
 import { CartContent } from './cart-content/cart.content';
 import { GoTopButtonModule } from 'ng2-go-top-button';
 
@@ -30,7 +29,6 @@ import { GoTopButtonModule } from 'ng2-go-top-button';
     FormsModule,
     NgbModule,
     InfiniteScrollModule,
-    ShoppingCartModule,
     GoTopButtonModule
   ]
 })

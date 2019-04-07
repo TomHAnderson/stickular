@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import * as iconModule from '../../data/icons.json';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import { Palette } from '../../data/palette';
 
 @Component({
@@ -23,11 +22,25 @@ export class StickerDetailContent {
 
   constructor(
     public activeModal: NgbActiveModal,
-    public palette: Palette,
-    private cartService: CartService<BaseCartItem>
+    public palette: Palette
   ) {
   }
 
+  getItemId(shape) {
+    return this.palette.getColorName(this.stickerSettings.color)
+    + ':'
+    + this.stickerSettings.iconStyle
+    + ':'
+    + this.stickerSettings.iconName
+    + ':'
+    + shape;
+  }
+
+  getItemName(name) {
+    return name + ' (' + this.palette.getColorName(this.stickerSettings.color) + ')';
+  }
+
+  /*
   getItem(shape, name) {
     return new BaseCartItem({
       id: this.palette.getColorName(this.stickerSettings.color)
@@ -45,12 +58,8 @@ export class StickerDetailContent {
       //      image: '/assets/svgs/' + this.stickerSettings.iconStyle + '/' + this.stickerSettings.iconName + '.svg'
     });
   }
+  */
 
-  addToCart(item) {
-    this.cartService.addItem(item);
-    this.activeModal.close();
-    alert(item.getName() + ' added to cart');
-  }
 
   calculateTopOffset(icon: any, withLabel?: boolean) {
     const width = icon.svg[this.stickerSettings.iconStyle].width;
