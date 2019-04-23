@@ -47,15 +47,17 @@
         We cut and ship stickers you select from our library of 
         over <strong>5000 time tracking designs</strong>.  Pick a color for your sticker, pick an 
         icon, then pick a style and we'll create custom colored stickers for 
-        your Tracker.  Any questions?  <a href="mailto:contact@apiskeletons.com">Contact Us</a>
+         your Tracker.  Any questions?  <a [routerLink]="['/faq']">Read our FAQ<
+/a> and <a href="mailto:contact@apiskeletons.com">Contact Us</a>
       </p>
+
+      <h3>1. Start by picking a color</h3>
     </div>
-    <h3>1. Start by picking a color</h3>
   </div>
 </div>
 <div class="container" style="position: sticky; top: 0; z-index:1000; background-color: white;">
   <div class="row">
-    <div class="col-md-12" style='min-height: 70px; margin-top: 20px;'>
+    <div class="col-md-12" style="height: 45px;">
       <span 
         *ngFor="let rgb of colors()"
         class="dot" 
@@ -63,18 +65,18 @@
         [ngClass]="{'selected': getColor() === rgb}"
         [ngStyle]="{'background-color': rgb, 'fill': (getColor() === rgb) ? 'white': rgb}"
       >
-        <div style="width: 25px; padding-left: 11px; padding-top: 6px;">
+        <div style="width: 25px; padding-left: 11px;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>
         </div>
       </span>
       <span 
         (click)="inverseColors()"
         class="dot text-center" 
-        style="border: solid; margin-top: 0px; cursor: pointer;"><small>inv</small></span>
+        style="border: solid; cursor: pointer;"><small>inv</small></span>
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" style="margin-top: 10px;">
   <div class="row">
     <div class="col-md-12">
       <h3>2. Find an icon and click the icon when you're ready</h3>
