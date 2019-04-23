@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CartContent } from './cart-content/cart.content';
 import { GoTopButtonModule } from 'ng2-go-top-button';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   entryComponents: [
@@ -21,7 +22,8 @@ import { GoTopButtonModule } from 'ng2-go-top-button';
     CartContent,
     IndexComponent,
     PageNotFoundComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    FaqComponent
   ],
   imports: [
     RouterModule,
