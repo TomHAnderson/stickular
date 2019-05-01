@@ -1,6 +1,6 @@
 <?php
 
-$id = substr($_SERVER['REQUEST_URI'], 11);
+$id = substr($_SERVER['REQUEST_URI'], 18);
 
 ?>
 
