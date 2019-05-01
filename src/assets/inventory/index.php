@@ -1,6 +1,6 @@
 <?php
 
-$id = substr($_SERVER['REQUEST_URI'], 18);
+$id = substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
 
 ?>
 
